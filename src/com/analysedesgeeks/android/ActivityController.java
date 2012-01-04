@@ -11,4 +11,13 @@ public class ActivityController {
 		context.startActivity(intent);
 	}
 
+	public static void showPodcast(final Context context, final int position) {
+		final Intent intent = new Intent(context, PodcastActivity.class);
+
+		intent.putExtra(Const.EXTRA_POSITION, position);
+
+		context.startActivity(intent);
+
+	}
+
 }

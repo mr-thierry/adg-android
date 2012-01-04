@@ -5,6 +5,9 @@ import java.util.List;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ViewSwitcher;
 
@@ -38,5 +41,14 @@ public class MainActivity extends RoboActivity {
 			adapter.setData(syndFeed);
 			viewSwitcher.setDisplayedChild(CONTENT_IDX);
 		}
+
+		list.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
+				ActivityController.showPodcast(MainActivity.this, position);
+
+			}
+		});
 	}
 }

@@ -2,8 +2,6 @@ package com.analysedesgeeks.android.rss;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +13,6 @@ import android.sax.EndTextElementListener;
 import android.sax.RootElement;
 import android.util.Xml;
 
-import com.analysedesgeeks.android.Const;
 import com.analysedesgeeks.android.utils.DateUtils;
 
 public class AndroidSaxFeedParser {
@@ -57,11 +54,7 @@ public class AndroidSaxFeedParser {
 		item.getChild(LINK).setEndTextElementListener(new EndTextElementListener() {
 			@Override
 			public void end(final String body) {
-				try {
-					currentMessage.link = new URL(body);
-				} catch (final MalformedURLException e) {
-					Ln.e(Const.TAG, e);
-				}
+				currentMessage.link = body;
 			}
 		});
 		item.getChild(DESCRIPTION).setEndTextElementListener(new EndTextElementListener() {
@@ -76,7 +69,7 @@ public class AndroidSaxFeedParser {
 				try {
 					currentMessage.date = DateUtils.Parser.GMT_DATE_PARSER.parse(body);
 				} catch (final ParseException e) {
-					Ln.e(Const.TAG, e);
+					Ln.e(e);
 				}
 			}
 		});

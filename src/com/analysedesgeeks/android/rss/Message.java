@@ -1,12 +1,11 @@
 package com.analysedesgeeks.android.rss;
 
-import java.net.URL;
 import java.util.Date;
 
 public class Message implements Comparable<Message> {
 
 	public String title;
-	public URL link;
+	public String link;
 	public String description;
 	public Date date;
 	public String formattedDate = null;

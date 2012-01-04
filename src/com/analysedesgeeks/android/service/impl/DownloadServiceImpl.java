@@ -14,7 +14,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import roboguice.util.Ln;
 
-import com.analysedesgeeks.android.Const;
 import com.analysedesgeeks.android.rss.Message;
 import com.analysedesgeeks.android.service.ConnectionService;
 import com.analysedesgeeks.android.service.DatabaseService;
@@ -53,7 +52,7 @@ public class DownloadServiceImpl implements DownloadService {
 				// Check if server response is valid
 				final StatusLine status = response.getStatusLine();
 				if (status.getStatusCode() != HttpStatus.SC_OK) {
-					Ln.e(Const.TAG, "Erreur lors du téléchargement:%s,%s", status.getStatusCode(), status.getReasonPhrase());
+					Ln.e("Erreur lors du téléchargement:%s,%s", status.getStatusCode(), status.getReasonPhrase());
 				} else {
 
 					// Extract content stream from HTTP response
@@ -80,7 +79,7 @@ public class DownloadServiceImpl implements DownloadService {
 					}
 				}
 			} catch (final Throwable t) {
-				Ln.e(Const.TAG, t);
+				Ln.e(t);
 			} finally {
 				closeQuietly(inputStream);
 			}

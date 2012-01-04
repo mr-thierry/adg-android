@@ -6,7 +6,6 @@ import static com.analysedesgeeks.android.rss.AndroidSaxFeedParser.LINK;
 import static com.analysedesgeeks.android.rss.AndroidSaxFeedParser.PUB_DATE;
 import static com.analysedesgeeks.android.rss.AndroidSaxFeedParser.TITLE;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import roboguice.util.Ln;
 
-import com.analysedesgeeks.android.Const;
 import com.analysedesgeeks.android.utils.DateUtils;
 
 public class RssHandler extends DefaultHandler {
@@ -40,7 +38,7 @@ public class RssHandler extends DefaultHandler {
 				if (localName.equalsIgnoreCase(TITLE)) {
 					currentMessage.title = builder.toString();
 				} else if (localName.equalsIgnoreCase(LINK)) {
-					currentMessage.link = new URL(builder.toString());
+					currentMessage.link = builder.toString();
 				} else if (localName.equalsIgnoreCase(DESCRIPTION)) {
 					currentMessage.description = builder.toString();
 				} else if (localName.equalsIgnoreCase(PUB_DATE)) {
@@ -51,7 +49,7 @@ public class RssHandler extends DefaultHandler {
 				builder.setLength(0);
 			}
 		} catch (final Exception e) {
-			Ln.e(Const.TAG, e);
+			Ln.e(e);
 		}
 	}
 
