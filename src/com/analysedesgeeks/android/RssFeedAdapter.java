@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
-import com.analysedesgeeks.android.data.RssItem;
+import com.analysedesgeeks.android.rss.Message;
+import com.analysedesgeeks.android.utils.DateUtils;
 
 public class RssFeedAdapter extends BaseAdapter {
 
-	private final List<RssItem> list;
+	private final List<Message> list;
 
 	protected final LayoutInflater inflater;
 
@@ -22,7 +24,7 @@ public class RssFeedAdapter extends BaseAdapter {
 	public RssFeedAdapter(final Context context) {
 		super();
 		this.context = context.getApplicationContext();
-		this.list = new ArrayList<RssItem>();
+		this.list = new ArrayList<Message>();
 		this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
@@ -32,7 +34,7 @@ public class RssFeedAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public RssItem getItem(final int position) {
+	public Message getItem(final int position) {
 		return list.get(position);
 	}
 
@@ -52,30 +54,49 @@ public class RssFeedAdapter extends BaseAdapter {
 
 			holder = new ViewHolder();
 
+			holder.title = (TextView) view.findViewById(R.id.title);
+			holder.date = (TextView) view.findViewById(R.id.date);
+
 			view.setTag(holder);
 		} else {
 			holder = (ViewHolder) view.getTag();
 		}
-		final RssItem rssItem = getItem(position);
+		final Message rssItem = getItem(position);
 		if (rssItem != null) {
+			holder.title.setText(rssItem.title);
 
+			String formattedDate = rssItem.formattedDate;
+			if (formattedDate == null) {
+				if (rssItem.date != null) {
+					rssItem.formattedDate = DateUtils.Formatter.FULL_DATE_FORMATTER.format(rssItem.date);
+				} else {
+					rssItem.formattedDate = "";
+				}
+				formattedDate = rssItem.formattedDate;
+			}
+
+			holder.date.setText(formattedDate);
 		}
 
 		return view;
 	}
 
-	public void setData(final List<RssItem> data) {
+	public void setData(final List<Message> msgs) {
 		if (!list.isEmpty()) {
 			list.clear();
 		}
 
-		if (data != null && data.size() > 0) {
-			list.addAll(data);
+		if (msgs.size() > 0) {
+			list.addAll(msgs);
 		}
+
 		notifyDataSetChanged();
 	}
 
 	static class ViewHolder {
+
+		public TextView date;
+		public TextView title;
 
 	}
 

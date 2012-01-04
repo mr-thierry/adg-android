@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.ViewSwitcher;
 
-import com.analysedesgeeks.android.data.RssItem;
+import com.analysedesgeeks.android.rss.Message;
 import com.analysedesgeeks.android.service.RssService;
 import com.google.inject.Inject;
 
@@ -33,9 +33,9 @@ public class MainActivity extends RoboActivity {
 		final RssFeedAdapter adapter = new RssFeedAdapter(this);
 		list.setAdapter(adapter);
 
-		final List<RssItem> data = rssService.getLastFeed();
-		if (data != null && data.size() > 0) {
-			adapter.setData(data);
+		final List<Message> syndFeed = rssService.getLastFeed();
+		if (syndFeed != null) {
+			adapter.setData(syndFeed);
 			viewSwitcher.setDisplayedChild(CONTENT_IDX);
 		}
 	}
