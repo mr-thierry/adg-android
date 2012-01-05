@@ -11,6 +11,9 @@
 
     <uses-permission
 		android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <uses-permission
+		android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".ADGApplication"
@@ -31,6 +34,10 @@
         <activity
             android:name=".PodcastActivity">
         </activity>
+        
+        <service
+			android:name=".os_service.MediaPlayerService">
+		</service>
     </application>
 
 </manifest>

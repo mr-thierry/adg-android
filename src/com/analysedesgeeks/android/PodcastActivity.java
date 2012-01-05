@@ -3,19 +3,21 @@ package com.analysedesgeeks.android;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
-import roboguice.util.Ln;
-import android.media.MediaPlayer;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Html;
-import android.widget.MediaController;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.analysedesgeeks.android.os_service.MediaPlayerService;
+import com.analysedesgeeks.android.os_service.WakefulIntentService;
 import com.analysedesgeeks.android.rss.Message;
 import com.analysedesgeeks.android.service.RssService;
 import com.google.inject.Inject;
 
-public class PodcastActivity extends RoboActivity implements MediaController.MediaPlayerControl {
+public class PodcastActivity extends RoboActivity {
 
 	@Inject
 	private RssService rssService;
@@ -29,44 +31,8 @@ public class PodcastActivity extends RoboActivity implements MediaController.Med
 	@InjectView(R.id.description)
 	private TextView description;
 
-	private MediaPlayer mediaPlayer;
-
-	private final Handler handler = new Handler();
-
-	@Override
-	public boolean canPause() {
-		return true;
-	}
-
-	@Override
-	public boolean canSeekBackward() {
-		return true;
-	}
-
-	@Override
-	public boolean canSeekForward() {
-		return true;
-	}
-
-	@Override
-	public int getBufferPercentage() {
-		return 0;
-	}
-
-	@Override
-	public int getCurrentPosition() {
-		return mediaPlayer.getCurrentPosition();
-	}
-
-	@Override
-	public int getDuration() {
-		return mediaPlayer.getDuration();
-	}
-
-	@Override
-	public boolean isPlaying() {
-		return mediaPlayer.isPlaying();
-	}
+	@InjectView(R.id.play)
+	private ImageButton playButton;
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState) {
@@ -78,38 +44,23 @@ public class PodcastActivity extends RoboActivity implements MediaController.Med
 		date.setText(msg.formattedDate);
 		description.setText(Html.fromHtml(msg.description));
 
-		mediaPlayer = new MediaPlayer();
+		playButton.setOnClickListener(new OnClickListener() {
 
-		try {
-			mediaPlayer.setDataSource(msg.link);
-			mediaPlayer.prepare();
-			mediaPlayer.start();
+			@Override
+			public void onClick(final View v) {
+				playCurrentPodcast();
 
-		} catch (final Exception e) {
-			Ln.e(e);
-		}
-
+			}
+		});
 	}
 
-	@Override
-	public void pause() {
-		mediaPlayer.pause();
+	private void playCurrentPodcast() {
+		final Intent intent = new Intent(this, MediaPlayerService.class);
+
+		final Message msg = rssService.getLastFeed().get(position);
+
+		intent.putExtra(Const.EXTRA_URL, msg.link);
+		WakefulIntentService.sendWakefulWork(this, intent);
 	}
 
-	@Override
-	public void seekTo(final int i) {
-		mediaPlayer.seekTo(i);
-	}
-
-	@Override
-	public void start() {
-		mediaPlayer.start();
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-		mediaPlayer.stop();
-		mediaPlayer.release();
-	}
 }
