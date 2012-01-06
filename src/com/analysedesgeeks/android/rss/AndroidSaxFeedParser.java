@@ -33,41 +33,41 @@ public class AndroidSaxFeedParser {
 		this.feedString = feedString;
 	}
 
-	public List<Message> parse() {
-		final Message currentMessage = new Message();
+	public List<FeedItem> parse() {
+		final FeedItem currentFeedItem = new FeedItem();
 		final RootElement root = new RootElement(RSS);
-		final List<Message> messages = new ArrayList<Message>();
+		final List<FeedItem> messages = new ArrayList<FeedItem>();
 		final Element channel = root.getChild(CHANNEL);
 		final Element item = channel.getChild(ITEM);
 		item.setEndElementListener(new EndElementListener() {
 			@Override
 			public void end() {
-				messages.add(currentMessage.copy());
+				messages.add(currentFeedItem.copy());
 			}
 		});
 		item.getChild(TITLE).setEndTextElementListener(new EndTextElementListener() {
 			@Override
 			public void end(final String body) {
-				currentMessage.title = body;
+				currentFeedItem.title = body;
 			}
 		});
 		item.getChild(LINK).setEndTextElementListener(new EndTextElementListener() {
 			@Override
 			public void end(final String body) {
-				currentMessage.link = body;
+				currentFeedItem.link = body;
 			}
 		});
 		item.getChild(DESCRIPTION).setEndTextElementListener(new EndTextElementListener() {
 			@Override
 			public void end(final String body) {
-				currentMessage.description = body;
+				currentFeedItem.description = body;
 			}
 		});
 		item.getChild(PUB_DATE).setEndTextElementListener(new EndTextElementListener() {
 			@Override
 			public void end(final String body) {
 				try {
-					currentMessage.date = DateUtils.Parser.GMT_DATE_PARSER.parse(body);
+					currentFeedItem.date = DateUtils.Parser.GMT_DATE_PARSER.parse(body);
 				} catch (final ParseException e) {
 					Ln.e(e);
 				}

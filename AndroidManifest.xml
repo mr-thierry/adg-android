@@ -36,7 +36,7 @@
         </activity>
         
         <service
-			android:name=".os_service.MediaPlayerService">
+			android:name=".os_service.PodcastPlaybackService">
 		</service>
     </application>
 

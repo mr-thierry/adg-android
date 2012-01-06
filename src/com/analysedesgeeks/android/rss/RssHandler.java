@@ -18,8 +18,8 @@ import roboguice.util.Ln;
 import com.analysedesgeeks.android.utils.DateUtils;
 
 public class RssHandler extends DefaultHandler {
-	private List<Message> messages;
-	private Message currentMessage;
+	private List<FeedItem> messages;
+	private FeedItem currentFeedItem;
 	private StringBuilder builder;
 
 	@Override
@@ -34,17 +34,17 @@ public class RssHandler extends DefaultHandler {
 	        throws SAXException {
 		super.endElement(uri, localName, name);
 		try {
-			if (this.currentMessage != null) {
+			if (this.currentFeedItem != null) {
 				if (localName.equalsIgnoreCase(TITLE)) {
-					currentMessage.title = builder.toString();
+					currentFeedItem.title = builder.toString();
 				} else if (localName.equalsIgnoreCase(LINK)) {
-					currentMessage.link = builder.toString();
+					currentFeedItem.link = builder.toString();
 				} else if (localName.equalsIgnoreCase(DESCRIPTION)) {
-					currentMessage.description = builder.toString();
+					currentFeedItem.description = builder.toString();
 				} else if (localName.equalsIgnoreCase(PUB_DATE)) {
-					currentMessage.date = DateUtils.Parser.GMT_DATE_PARSER.parse(builder.toString());
+					currentFeedItem.date = DateUtils.Parser.GMT_DATE_PARSER.parse(builder.toString());
 				} else if (localName.equalsIgnoreCase(ITEM)) {
-					messages.add(currentMessage);
+					messages.add(currentFeedItem);
 				}
 				builder.setLength(0);
 			}
@@ -53,14 +53,14 @@ public class RssHandler extends DefaultHandler {
 		}
 	}
 
-	public List<Message> getMessages() {
+	public List<FeedItem> getFeedItems() {
 		return this.messages;
 	}
 
 	@Override
 	public void startDocument() throws SAXException {
 		super.startDocument();
-		messages = new ArrayList<Message>();
+		messages = new ArrayList<FeedItem>();
 		builder = new StringBuilder();
 	}
 
@@ -69,7 +69,7 @@ public class RssHandler extends DefaultHandler {
 	        final Attributes attributes) throws SAXException {
 		super.startElement(uri, localName, name, attributes);
 		if (localName.equalsIgnoreCase(ITEM)) {
-			this.currentMessage = new Message();
+			this.currentFeedItem = new FeedItem();
 		}
 	}
 }

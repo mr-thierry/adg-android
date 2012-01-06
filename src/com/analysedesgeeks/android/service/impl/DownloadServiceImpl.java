@@ -14,7 +14,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import roboguice.util.Ln;
 
-import com.analysedesgeeks.android.rss.Message;
+import com.analysedesgeeks.android.rss.FeedItem;
 import com.analysedesgeeks.android.service.ConnectionService;
 import com.analysedesgeeks.android.service.DatabaseService;
 import com.analysedesgeeks.android.service.DownloadService;
@@ -71,7 +71,7 @@ public class DownloadServiceImpl implements DownloadService {
 					// Return result from buffered stream
 					final String dataAsString = new String(content.toByteArray());
 
-					final List<Message> syndFeed = rssService.parseRss(dataAsString);
+					final List<FeedItem> syndFeed = rssService.parseRss(dataAsString);
 
 					if (syndFeed != null) {
 						databaseService.save(dataAsString);

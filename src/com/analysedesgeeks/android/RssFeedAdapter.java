@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.analysedesgeeks.android.rss.Message;
+import com.analysedesgeeks.android.rss.FeedItem;
 import com.analysedesgeeks.android.utils.DateUtils;
 
 public class RssFeedAdapter extends BaseAdapter {
 
-	private final List<Message> list;
+	private final List<FeedItem> list;
 
 	protected final LayoutInflater inflater;
 
@@ -24,7 +24,7 @@ public class RssFeedAdapter extends BaseAdapter {
 	public RssFeedAdapter(final Context context) {
 		super();
 		this.context = context.getApplicationContext();
-		this.list = new ArrayList<Message>();
+		this.list = new ArrayList<FeedItem>();
 		this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
@@ -34,7 +34,7 @@ public class RssFeedAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public Message getItem(final int position) {
+	public FeedItem getItem(final int position) {
 		return list.get(position);
 	}
 
@@ -61,7 +61,7 @@ public class RssFeedAdapter extends BaseAdapter {
 		} else {
 			holder = (ViewHolder) view.getTag();
 		}
-		final Message rssItem = getItem(position);
+		final FeedItem rssItem = getItem(position);
 		if (rssItem != null) {
 			holder.title.setText(rssItem.title);
 
@@ -81,7 +81,7 @@ public class RssFeedAdapter extends BaseAdapter {
 		return view;
 	}
 
-	public void setData(final List<Message> msgs) {
+	public void setData(final List<FeedItem> msgs) {
 		if (!list.isEmpty()) {
 			list.clear();
 		}

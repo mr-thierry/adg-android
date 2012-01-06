@@ -2,7 +2,7 @@ package com.analysedesgeeks.android.rss;
 
 import java.util.Date;
 
-public class Message implements Comparable<Message> {
+public class FeedItem implements Comparable<FeedItem> {
 
 	public String title;
 	public String link;
@@ -11,7 +11,7 @@ public class Message implements Comparable<Message> {
 	public String formattedDate = null;
 
 	@Override
-	public int compareTo(final Message another) {
+	public int compareTo(final FeedItem another) {
 		if (another == null) {
 			return 1;
 		}
@@ -19,8 +19,8 @@ public class Message implements Comparable<Message> {
 		return another.date.compareTo(date);
 	}
 
-	public Message copy() {
-		final Message copy = new Message();
+	public FeedItem copy() {
+		final FeedItem copy = new FeedItem();
 		copy.title = title;
 		copy.link = link;
 		copy.description = description;
@@ -39,7 +39,7 @@ public class Message implements Comparable<Message> {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		final Message other = (Message) obj;
+		final FeedItem other = (FeedItem) obj;
 		if (date == null) {
 			if (other.date != null) {
 				return false;

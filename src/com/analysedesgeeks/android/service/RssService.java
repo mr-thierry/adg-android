@@ -2,12 +2,12 @@ package com.analysedesgeeks.android.service;
 
 import java.util.List;
 
-import com.analysedesgeeks.android.rss.Message;
+import com.analysedesgeeks.android.rss.FeedItem;
 
 public interface RssService {
 
-	 List<Message> getLastFeed();
+	List<FeedItem> getLastFeed();
 
-	 List<Message> parseRss(String rss);
+	List<FeedItem> parseRss(String rss);
 
 }

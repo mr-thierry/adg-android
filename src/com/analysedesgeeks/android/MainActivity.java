@@ -11,7 +11,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.ViewSwitcher;
 
-import com.analysedesgeeks.android.rss.Message;
+import com.analysedesgeeks.android.rss.FeedItem;
 import com.analysedesgeeks.android.service.RssService;
 import com.google.inject.Inject;
 
@@ -36,7 +36,7 @@ public class MainActivity extends RoboActivity {
 		final RssFeedAdapter adapter = new RssFeedAdapter(this);
 		list.setAdapter(adapter);
 
-		final List<Message> syndFeed = rssService.getLastFeed();
+		final List<FeedItem> syndFeed = rssService.getLastFeed();
 		if (syndFeed != null) {
 			adapter.setData(syndFeed);
 			viewSwitcher.setDisplayedChild(CONTENT_IDX);
@@ -51,4 +51,5 @@ public class MainActivity extends RoboActivity {
 			}
 		});
 	}
+
 }
