@@ -72,8 +72,6 @@ public class PodcastActivity extends RoboActivity {
 
 	private long mDuration;
 
-	private final long mPosOverride = -1;
-
 	@InjectView(R.id.currenttime)
 	private TextView mCurrentTime;
 

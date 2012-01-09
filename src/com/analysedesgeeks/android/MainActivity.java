@@ -44,8 +44,8 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		getSupportActionBar().setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-		final ActionBar.Tab tab1 = getSupportActionBar().newTab().setText("Tab 1");
-		final ActionBar.Tab tab2 = getSupportActionBar().newTab().setText("Tab 2");
+		final ActionBar.Tab tab1 = getSupportActionBar().newTab().setText(R.string.podcast);
+		final ActionBar.Tab tab2 = getSupportActionBar().newTab().setText(R.string.twitter);
 
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mTabsAdapter = new TabsAdapter(this, getSupportActionBar(), mViewPager);
