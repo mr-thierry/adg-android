@@ -7,7 +7,7 @@ public class ActivityController {
 
 	public static void showMainActivity(final Context context) {
 		//final Intent intent = new Intent(context, MainActivity.class);
-		final Intent intent = new Intent(context, ActionBarTabsPager.class);
+		final Intent intent = new Intent(context, MainActivity.class);
 
 		context.startActivity(intent);
 	}
@@ -15,6 +15,7 @@ public class ActivityController {
 	public static void showPodcast(final Context context, final int position) {
 		final Intent intent = new Intent(context, PodcastActivity.class);
 
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.putExtra(Const.EXTRA_POSITION, position);
 
 		context.startActivity(intent);

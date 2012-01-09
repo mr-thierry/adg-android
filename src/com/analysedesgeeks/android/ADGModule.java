@@ -1,7 +1,5 @@
 package com.analysedesgeeks.android;
 
-import roboguice.config.AbstractAndroidModule;
-
 import com.analysedesgeeks.android.service.ConnectionService;
 import com.analysedesgeeks.android.service.DatabaseService;
 import com.analysedesgeeks.android.service.DownloadService;
@@ -10,8 +8,9 @@ import com.analysedesgeeks.android.service.impl.ConnectionServiceImpl;
 import com.analysedesgeeks.android.service.impl.DatabaseServiceImpl;
 import com.analysedesgeeks.android.service.impl.DownloadServiceImpl;
 import com.analysedesgeeks.android.service.impl.RssServiceImpl;
+import com.google.inject.AbstractModule;
 
-public class ADGModule extends AbstractAndroidModule {
+public class ADGModule extends AbstractModule {
 
 	@Override
 	protected void configure() {

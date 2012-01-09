@@ -7,9 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.analysedesgeeks.android.service.DatabaseService;
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
-@Singleton
 public class DatabaseServiceImpl extends SQLiteOpenHelper implements DatabaseService {
 
 	private static final int TABLE_VERSION = 38;

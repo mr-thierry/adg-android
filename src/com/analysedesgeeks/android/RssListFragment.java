@@ -1,50 +1,50 @@
 package com.analysedesgeeks.android;
 
+import java.util.List;
+
+import roboguice.RoboGuice;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ListView;
 
-public class RssListFragment extends Fragment {
-	/**
-	 * Create a new instance of RssListFragment, providing "num"
-	 * as an argument.
-	 */
-	static RssListFragment newInstance(final int num) {
-		final RssListFragment f = new RssListFragment();
+import com.analysedesgeeks.android.rss.FeedItem;
+import com.analysedesgeeks.android.service.RssService;
+import com.google.inject.Inject;
 
-		// Supply num input as an argument.
-		final Bundle args = new Bundle();
-		args.putInt("num", num);
-		f.setArguments(args);
+public class RssListFragment extends ListFragment {
 
-		return f;
-	}
+	private RssFeedAdapter mAdapter;
 
-	int mNum;
+	@Inject
+	private RssService rssService;
 
-	/**
-	 * When creating, retrieve this instance's number from its arguments.
-	 */
 	@Override
-	public void onCreate(final Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		mNum = getArguments() != null ? getArguments().getInt("num") : 1;
+	public void onActivityCreated(final Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+
+		setEmptyText(getString(R.string.noContentFound));
+
+		setHasOptionsMenu(false);
+
+		mAdapter = new RssFeedAdapter(getActivity());
+		setListAdapter(mAdapter);
+
+		setListShown(true);
+
+		// RoboGuice injection via Composition
+		RoboGuice.getInjector(getActivity()).injectMembersWithoutViews(this);
+
+		final List<FeedItem> syndFeed = rssService.getLastFeed();
+		if (syndFeed != null) {
+			mAdapter.setData(syndFeed);
+		}
+
 	}
 
-	/**
-	 * The Fragment's UI is just a simple text view showing its
-	 * instance number.
-	 */
 	@Override
-	public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
-	        final Bundle savedInstanceState) {
-		final View v = inflater.inflate(R.layout.hello_world, container, false);
-		final View tv = v.findViewById(R.id.text);
-		((TextView) tv).setText("Fragment #" + mNum);
-		tv.setBackgroundDrawable(getResources().getDrawable(android.R.drawable.gallery_thumb));
-		return v;
+	public void onListItemClick(final ListView l, final View v, final int position, final long id) {
+		ActivityController.showPodcast(this.getActivity().getApplicationContext(), position);
 	}
+
 }

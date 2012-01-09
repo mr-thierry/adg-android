@@ -6,9 +6,7 @@ import android.net.NetworkInfo.State;
 
 import com.analysedesgeeks.android.service.ConnectionService;
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
-@Singleton
 public class ConnectionServiceImpl implements ConnectionService {
 
 	@Inject

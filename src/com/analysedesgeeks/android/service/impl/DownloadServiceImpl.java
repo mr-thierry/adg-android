@@ -20,9 +20,7 @@ import com.analysedesgeeks.android.service.DatabaseService;
 import com.analysedesgeeks.android.service.DownloadService;
 import com.analysedesgeeks.android.service.RssService;
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 
-@Singleton
 public class DownloadServiceImpl implements DownloadService {
 
 	@Inject
