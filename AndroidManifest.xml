@@ -29,6 +29,10 @@
         </activity>
         <activity android:name=".PodcastActivity" >
         </activity>
+        <activity
+            android:name=".ActionBarTabsPager"
+            android:theme="@style/Theme.Sherlock" >
+        </activity>
 
         <service android:name=".os_service.PodcastPlaybackService" >
         </service>

@@ -6,7 +6,8 @@ import android.content.Intent;
 public class ActivityController {
 
 	public static void showMainActivity(final Context context) {
-		final Intent intent = new Intent(context, MainActivity.class);
+		//final Intent intent = new Intent(context, MainActivity.class);
+		final Intent intent = new Intent(context, ActionBarTabsPager.class);
 
 		context.startActivity(intent);
 	}
