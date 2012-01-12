@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnInfoListener;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
@@ -48,10 +49,10 @@ public class PodcastPlaybackService extends Service {
 	public static final String CMDPAUSE = "pause";
 	public static final String CMDSTOP = "stop";
 
-	public static final String TOGGLEPAUSE_ACTION = "com.android.music.musicservicecommand.togglepause";
-	public static final String PAUSE_ACTION = "com.android.music.musicservicecommand.pause";
-	public static final String PLAYSTATE_CHANGED = "com.android.music.playstatechanged";
-	public static final String SERVICECMD = "com.android.music.musicservicecommand";
+	public static final String TOGGLEPAUSE_ACTION = "com.analysedesgeeks.android.os_service.musicservicecommand.togglepause";
+	public static final String PAUSE_ACTION = "com.analysedesgeeks.android.os_service.musicservicecommand.pause";
+	public static final String PLAYSTATE_CHANGED = "com.analysedesgeeks.android.os_service.playstatechanged";
+	public static final String SERVICECMD = "com.analysedesgeeks.android.os_service.musicservicecommand";
 
 	private MultiPlayer mPlayer;
 
@@ -112,32 +113,6 @@ public class PodcastPlaybackService extends Service {
 
 	private static final int TRACK_ENDED = 1;
 
-	/*
-	 * Desired behavior for prev/next/shuffle:
-	 * 
-	 * - NEXT will move to the next track in the list when not shuffling, and to
-	 * a track randomly picked from the not-yet-played tracks when shuffling.
-	 * If all tracks have already been played, pick from the full set, but
-	 * avoid picking the previously played track if possible.
-	 * - when shuffling, PREV will go to the previously played track. Hitting
-	 * PREV
-	 * again will go to the track played before that, etc. When the start of the
-	 * history has been reached, PREV is a no-op.
-	 * When not shuffling, PREV will go to the sequentially previous track (the
-	 * difference with the shuffle-case is mainly that when not shuffling, the
-	 * user can back up to tracks that are not in the history).
-	 * 
-	 * Example:
-	 * When playing an album with 10 tracks from the start, and enabling shuffle
-	 * while playing track 5, the remaining tracks (6-10) will be shuffled, e.g.
-	 * the final play order might be 1-2-3-4-5-8-10-6-9-7.
-	 * When hitting 'prev' 8 times while playing track 7 in this example, the
-	 * user will go to tracks 9-6-10-8-5-4-3-2. If the user then hits 'next',
-	 * a random track will be picked again. If at any time user disables
-	 * shuffling
-	 * the next/previous track will be picked in sequential order again.
-	 */
-
 	private static final int RELEASE_WAKELOCK = 2;
 
 	private static final int SERVER_DIED = 3;
@@ -146,12 +121,20 @@ public class PodcastPlaybackService extends Service {
 
 	private String mFileToPlay;
 
+	private String description = "";
+
+	private boolean hasPlayed;
+
+	public String description() {
+		return description;
+	}
+
 	/**
 	 * Returns the duration of the file in milliseconds.
 	 * Currently this method returns -1 for the duration of MIDI files.
 	 */
 	public long duration() {
-		if (mPlayer.isInitialized()) {
+		if (mPlayer != null && mPlayer.isInitialized()) {
 			return mPlayer.duration();
 		}
 		return -1;
@@ -163,6 +146,10 @@ public class PodcastPlaybackService extends Service {
 	 */
 	public String getPath() {
 		return mFileToPlay;
+	}
+
+	public boolean hasPlayed() {
+		return hasPlayed;
 	}
 
 	/**
@@ -294,6 +281,7 @@ public class PodcastPlaybackService extends Service {
 			}
 
 			mFileToPlay = path;
+
 			mPlayer.setDataSource(mFileToPlay);
 			if (!mPlayer.isInitialized()) {
 				stop(true);
@@ -333,10 +321,11 @@ public class PodcastPlaybackService extends Service {
 			status.contentView = views;
 			status.flags |= Notification.FLAG_ONGOING_EVENT;
 			status.icon = R.drawable.stat_notify_musicplayer;
-			status.contentIntent = PendingIntent.getActivity(this, 0, new Intent("com.android.music.PLAYBACK_VIEWER").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), 0);
+			status.contentIntent = PendingIntent.getActivity(this, 0, new Intent("com.analysedesgeeks.android.os_service.PLAYBACK_VIEWER").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), 0);
 			startForeground(PLAYBACKSERVICE_STATUS, status);
 			if (!mIsSupposedToBePlaying) {
 				mIsSupposedToBePlaying = true;
+				hasPlayed = true;
 			}
 
 		}
@@ -369,6 +358,10 @@ public class PodcastPlaybackService extends Service {
 			return mPlayer.seek(pos);
 		}
 		return -1;
+	}
+
+	public void setDescription(final String description) {
+		this.description = description;
 	}
 
 	/**
@@ -419,8 +412,18 @@ public class PodcastPlaybackService extends Service {
 		}
 
 		@Override
+		public String getDescription() {
+			return mService.get().description();
+		}
+
+		@Override
 		public String getPath() throws RemoteException {
 			return mService.get().getPath();
+		}
+
+		@Override
+		public boolean hasPlayed() throws RemoteException {
+			return mService.get().hasPlayed();
 		}
 
 		@Override
@@ -429,8 +432,7 @@ public class PodcastPlaybackService extends Service {
 		}
 
 		@Override
-		public void openFile(final String path)
-		{
+		public void openFile(final String path) {
 			mService.get().open(path);
 		}
 
@@ -452,6 +454,11 @@ public class PodcastPlaybackService extends Service {
 		@Override
 		public long seek(final long pos) throws RemoteException {
 			return mService.get().seek(pos);
+		}
+
+		@Override
+		public void setDescription(final String description) {
+			mService.get().setDescription(description);
 		}
 
 		@Override
@@ -508,6 +515,16 @@ public class PodcastPlaybackService extends Service {
 
 		public MultiPlayer() {
 			mMediaPlayer.setWakeMode(PodcastPlaybackService.this, PowerManager.PARTIAL_WAKE_LOCK);
+
+			mMediaPlayer.setOnInfoListener(new OnInfoListener() {
+
+				@Override
+				public boolean onInfo(final MediaPlayer mp, final int what, final int extra) {
+					// TODO Auto-generated method stub
+					return false;
+				}
+
+			});
 		}
 
 		public long duration() {

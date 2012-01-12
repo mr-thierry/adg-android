@@ -28,14 +28,17 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 
-/**
- * Demonstrates combining the action bar with a ViewPager to implement a tab UI
- * that switches between tabs and also allows the user to perform horizontal
- * flicks to move between the tabs.
- */
-public class MainActivity extends FragmentActivity {
-	ViewPager mViewPager;
-	TabsAdapter mTabsAdapter;
+public class MainActivity extends BaseAbstractActivity {
+	private ViewPager mViewPager;
+
+	private TabsAdapter mTabsAdapter;
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		updatePodcastInfo();
+	}
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
@@ -56,6 +59,7 @@ public class MainActivity extends FragmentActivity {
 		if (savedInstanceState != null) {
 			getSupportActionBar().setSelectedNavigationItem(savedInstanceState.getInt("index"));
 		}
+
 	}
 
 	@Override
