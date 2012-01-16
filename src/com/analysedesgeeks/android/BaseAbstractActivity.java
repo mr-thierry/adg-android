@@ -11,6 +11,8 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemClock;
+import android.support.v4.view.Menu;
+import android.support.v4.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -26,6 +28,8 @@ import com.analysedesgeeks.android.utils.Utils;
 import com.google.inject.Inject;
 
 public abstract class BaseAbstractActivity extends RoboFragmentActivity {
+
+	private static final int MENU_INFO = 1;
 
 	@Inject
 	protected RssService rssService;
@@ -115,9 +119,9 @@ public abstract class BaseAbstractActivity extends RoboFragmentActivity {
 	};
 
 	private long mLastSeekEventTime;
+
 	private long mPosOverride = -1;
 	private boolean mFromTouch = false;
-
 	private final OnSeekBarChangeListener mSeekListener = new OnSeekBarChangeListener() {
 
 		@Override
@@ -154,6 +158,31 @@ public abstract class BaseAbstractActivity extends RoboFragmentActivity {
 			mFromTouch = false;
 		}
 	};
+
+	@Override
+	public boolean onCreateOptionsMenu(final Menu menu) {
+		menu.add(0, MENU_INFO, 0, "Info")
+		        .setIcon(R.drawable.ic_menu_info)
+		        .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(final MenuItem item) {
+		switch (item.getItemId()) {
+		case MENU_INFO:
+			ActivityController.showInfoActivity(this);
+			return true;
+		case android.R.id.home:
+			// app icon in action bar clicked; go home
+			ActivityController.showMainActivity(this);
+
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
 
 	@Override
 	public void onResume() {

@@ -14,6 +14,10 @@ import com.google.inject.Inject;
 
 public class RssListFragment extends ListFragment {
 
+	static RssListFragment newInstance() {
+		return new RssListFragment();
+	}
+
 	private RssFeedAdapter mAdapter;
 
 	@Inject

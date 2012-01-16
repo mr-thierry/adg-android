@@ -7,6 +7,14 @@
 	<string name="twitter">Twitter</string>
 	<string name="loading">Chargement&#8230;</string>
 	<string name="play">Jouer</string>
+	<string name="crash_toast_text">Oups, une erreur est survenue. Un rapport d\'incident a été envoyé à l\'équipe de développement</string>
+	<string name="support">Dons</string>
+	<string name="about">À propos</string>
+	<string name="facebook">Facebook</string>
+	<string name="forum">Forum</string>
+	<string name="contact">Contact</string>
+	<string name="web">Site Web</string>
+	
 	
 	<string translatable="false" name="durationformatshort"><xliff:g id="format">%2$d:%5$02d</xliff:g></string>
 	<string translatable="false" name="durationformatlong"><xliff:g id="format">%1$d:%3$02d:%5$02d</xliff:g></string>

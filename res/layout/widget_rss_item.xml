@@ -29,23 +29,12 @@
     
     <TextView
         android:id="@+id/date"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
-        android:layout_toLeftOf="@+id/forward_arrow"
         android:layout_toRightOf="@+id/img"
         android:maxLines="1"
         android:singleLine="false"
         android:textColor="@color/gradient_light_blue" />
-
-    <ImageView
-        android:id="@+id/forward_arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/img"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/img"
-        android:layout_alignWithParentIfMissing="true"
-        android:src="@drawable/fleche_droite" />
 
 </RelativeLayout>

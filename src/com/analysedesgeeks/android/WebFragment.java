@@ -9,12 +9,26 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class TwitterListFragment extends Fragment {
+public class WebFragment extends Fragment {
 
-	static TwitterListFragment newInstance(final int num) {
-		final TwitterListFragment f = new TwitterListFragment();
+	protected static final String URL = "URL";
+
+	static WebFragment newInstance(final String url) {
+		final WebFragment f = new WebFragment();
+
+		final Bundle args = new Bundle();
+		args.putString(URL, url);
+		f.setArguments(args);
 
 		return f;
+	}
+
+	private String url;
+
+	@Override
+	public void onCreate(final Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		url = getArguments() != null ? getArguments().getString(URL) : null;
 	}
 
 	@Override
@@ -30,6 +44,7 @@ public class TwitterListFragment extends Fragment {
 		final WebSettings settings = webview.getSettings();
 		settings.setJavaScriptEnabled(true);
 		settings.setDomStorageEnabled(true);
+		settings.setDefaultZoom(WebSettings.ZoomDensity.FAR);
 
 		final View loading = v.findViewById(R.id.loading);
 
@@ -41,7 +56,7 @@ public class TwitterListFragment extends Fragment {
 			}
 		});
 
-		webview.loadUrl("http://twitter.com/#!/analysedesgeeks");
+		webview.loadUrl(url);
 
 		return v;
 	}
