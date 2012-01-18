@@ -20,15 +20,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="5dp" >
+                android:orientation="horizontal" >
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:padding="5dp" >
+                    android:orientation="vertical" >
 
                     <TextView
                         android:id="@+id/title"
@@ -36,7 +34,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/date"
@@ -47,6 +46,7 @@
                 </LinearLayout>
 
                 <ImageButton
+                    android:layout_marginLeft="5dp"
                     android:id="@+id/play"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

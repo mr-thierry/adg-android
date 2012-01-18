@@ -14,7 +14,8 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="5dp"
         android:scaleType="centerInside"
-        android:src="@drawable/logo_list" />
+        android:src="@drawable/logo_list"
+        android:contentDescription="@string/logo" />
 
     <com.analysedesgeeks.android.view.EllipsizingTextView
         android:id="@+id/title"

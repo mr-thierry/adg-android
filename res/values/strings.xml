@@ -29,6 +29,7 @@
 	<string name="contactEmailSubject">Contact - Analyse des Geeks</string>
 	<string name="sendEmail">Envoyer un courriel</string>
 	<string name="analyseDesGeeks">Analyse des Geeks</string>
+	<string name="logo">Logo</string>
 		
 	
 	<string translatable="false" name="durationformatshort"><xliff:g id="format">%2$d:%5$02d</xliff:g></string>
