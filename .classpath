@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="libs/guice-2.0-no_aop.jar"/>
 	<classpathentry kind="lib" path="libs/roboguice-2.0b3.jar" sourcepath="libs/libs-src/roboguice-1.1.2-sources.jar"/>
 	<classpathentry kind="lib" path="libs/acra-4.2.3.jar"/>
+	<classpathentry kind="lib" path="libs/commons-lang-2.5.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

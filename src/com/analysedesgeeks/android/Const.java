@@ -15,6 +15,7 @@ public final class Const {
 	public static final String ADG_CONTACT_EMAIL = "analysedesgeeks@gmail.com";
 	public static final String MARKET_URL = "market://details?id=<packagename>";
 	public static final String ADG_CONTACT_DEV_EMAIL = "thierryd@gmail.com";
+	public static final String FEED_URL = "http://feeds.feedburner.com/LanalyseDesGeeks?format=xml";
 
 	private Const() {
 

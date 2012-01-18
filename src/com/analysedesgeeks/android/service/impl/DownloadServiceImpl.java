@@ -3,6 +3,7 @@ package com.analysedesgeeks.android.service.impl;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -14,6 +15,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import roboguice.util.Ln;
 
+import com.analysedesgeeks.android.Const;
 import com.analysedesgeeks.android.rss.FeedItem;
 import com.analysedesgeeks.android.service.ConnectionService;
 import com.analysedesgeeks.android.service.DatabaseService;
@@ -32,18 +34,16 @@ public class DownloadServiceImpl implements DownloadService {
 	@Inject
 	private RssService rssService;
 
-	private static final String URL = "http://feeds.feedburner.com/LanalyseDesGeeks?format=xml";
-
 	@Override
 	public boolean downloadFeed() {
 		boolean downloadSuccess = false;
 
 		if (connectionService.isConnected()) {
 
-			final HttpGet httpget = new HttpGet(URL);
-
 			InputStream inputStream = null;
 			try {
+				final HttpGet httpget = new HttpGet(new URI(Const.FEED_URL));
+
 				// Send GET request to URI
 				final HttpResponse response = new DefaultHttpClient().execute(httpget);
 

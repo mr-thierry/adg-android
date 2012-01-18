@@ -1,5 +1,7 @@
 package com.analysedesgeeks.android;
 
+import org.apache.commons.lang.StringEscapeUtils;
+
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 import roboguice.util.Ln;
@@ -22,6 +24,9 @@ public class PodcastActivity extends BaseAbstractActivity {
 	@InjectView(R.id.date)
 	private TextView date;
 
+	@InjectView(R.id.title)
+	private TextView title;
+
 	@InjectView(R.id.description)
 	private TextView description;
 
@@ -35,8 +40,15 @@ public class PodcastActivity extends BaseAbstractActivity {
 
 		final FeedItem msg = rssService.getLastFeed().get(position);
 
+		title.setText(msg.title);
 		date.setText(msg.formattedDate);
-		description.setText(Html.fromHtml(msg.description));
+
+		String descriptionStr = msg.description;
+		descriptionStr = StringEscapeUtils.unescapeHtml(descriptionStr);
+		descriptionStr = descriptionStr.replace("- ", "<br>- ");
+		descriptionStr = descriptionStr.replaceAll("<img src=\"http://feeds.feedburner.com/~r/LanalyseDesGeeks.*height=\"1\" width=\"1\"/>", "");
+
+		description.setText(Html.fromHtml(descriptionStr));
 
 		playButton.setOnClickListener(new OnClickListener() {
 

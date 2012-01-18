@@ -370,6 +370,7 @@ public class PodcastPlaybackService extends Service {
 	 */
 	public void stop() {
 		stop(true);
+		hasPlayed = false;
 	}
 
 	private void gotoIdleState() {
