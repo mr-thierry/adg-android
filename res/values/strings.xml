@@ -14,7 +14,12 @@
 	<string name="forum">Forum</string>
 	<string name="contact">Contact</string>
 	<string name="web">Site Web</string>
-	
+	<string name="commanditaires">Commanditaires</string>
+	<string name="and">et</string>
+	<string name="madeBy">Réalisé Par</string>
+	<string name="moog_audio">Moog Audio</string>
+	<string name="cipc">CPIC</string>
+		
 	
 	<string translatable="false" name="durationformatshort"><xliff:g id="format">%2$d:%5$02d</xliff:g></string>
 	<string translatable="false" name="durationformatlong"><xliff:g id="format">%1$d:%3$02d:%5$02d</xliff:g></string>

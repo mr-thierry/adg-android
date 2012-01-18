@@ -2,16 +2,42 @@ package com.analysedesgeeks.android;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 
 public class ActivityController {
 
-	public static void showSupportPAge(final Context context) {
-		final Intent intent = new Intent(context, WebActivity.class);
+	public static void onUrlClicked(final Context context, final String url) {
 
-		intent.putExtra(Const.EXTRA_URL, Const.SUPPORT_URL);
+		final Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse(url));
 
 		context.startActivity(intent);
+	}
 
+	public static void showAboutPage(final Context context) {
+		final Intent intent = new Intent(context, AboutActivity.class);
+
+		context.startActivity(intent);
+	}
+
+	public static void showContact(final Context context) {
+		final Intent intent = new Intent(context, ContactActivity.class);
+
+		context.startActivity(intent);
+	}
+
+	public static void showFacebook(final Context context) {
+		final Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse(Const.FACEBOOK_URL));
+
+		context.startActivity(intent);
+	}
+
+	public static void showForum(final Context context) {
+		final Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse(Const.FORUM_URL));
+
+		context.startActivity(intent);
 	}
 
 	public static void showInfoActivity(final Context context) {
@@ -38,4 +64,18 @@ public class ActivityController {
 		context.startActivity(intent);
 	}
 
+	public static void showSupportPage(final Context context) {
+		final Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse(Const.SUPPORT_URL));
+
+		context.startActivity(intent);
+
+	}
+
+	public static void showWebPage(final Context context) {
+		final Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse(Const.WEB_URL));
+
+		context.startActivity(intent);
+	}
 }

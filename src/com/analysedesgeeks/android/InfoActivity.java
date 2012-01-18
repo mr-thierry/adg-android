@@ -56,16 +56,21 @@ public class InfoActivity extends RoboActivity {
 		switch (position) {
 		case 0:
 			showSupport();
+			break;
 		case 1:
-			showContact();
+			showAbout();
+			break;
 		case 2:
 			showWeb();
+			break;
 		case 3:
 			showFacebook();
+			break;
 		case 4:
 			showForum();
+			break;
 		case 5:
-			showSend();
+			showContact();
 			break;
 
 		default:
@@ -78,41 +83,37 @@ public class InfoActivity extends RoboActivity {
 		final List<InfoItem> list = new ArrayList<InfoAdapter.InfoItem>();
 
 		list.add(new InfoItem(R.drawable.ic_menu_support, R.string.support));
-		list.add(new InfoItem(R.drawable.ic_menu_contact, R.string.about));
+		list.add(new InfoItem(R.drawable.ic_menu_about, R.string.about));
 		list.add(new InfoItem(R.drawable.ic_menu_web, R.string.web));
 		list.add(new InfoItem(R.drawable.ic_menu_facebook, R.string.facebook));
 		list.add(new InfoItem(R.drawable.ic_menu_forum, R.string.forum));
-		list.add(new InfoItem(R.drawable.ic_menu_send, R.string.contact));
+		list.add(new InfoItem(R.drawable.ic_menu_contact, R.string.contact));
 
 		return list;
 	}
 
-	private void showContact() {
+	private void showAbout() {
+		ActivityController.showAboutPage(this);
+	}
 
+	private void showContact() {
+		ActivityController.showContact(this);
 	}
 
 	private void showFacebook() {
-		// TODO Auto-generated method stub
-
+		ActivityController.showFacebook(this);
 	}
 
 	private void showForum() {
-		// TODO Auto-generated method stub
-
-	}
-
-	private void showSend() {
-		// TODO Auto-generated method stub
+		ActivityController.showForum(this);
 
 	}
 
 	private void showSupport() {
-		ActivityController.showSupportPAge(this);
-
+		ActivityController.showSupportPage(this);
 	}
 
 	private void showWeb() {
-		// TODO Auto-generated method stub
-
+		ActivityController.showWebPage(this);
 	}
 }

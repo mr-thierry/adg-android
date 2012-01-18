@@ -27,7 +27,13 @@
         </activity>
         <activity android:name=".PodcastActivity" >
         </activity>
-        <activity android:name=".InfoActivity" >
+        <activity
+            android:name=".InfoActivity"
+            android:theme="@style/Theme.Sherlock" >
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:theme="@style/Theme.Sherlock" >
         </activity>
         <activity
             android:name=".MainActivity"

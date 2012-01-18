@@ -45,6 +45,8 @@ public class WebFragment extends Fragment {
 		settings.setJavaScriptEnabled(true);
 		settings.setDomStorageEnabled(true);
 		settings.setDefaultZoom(WebSettings.ZoomDensity.FAR);
+		settings.setSupportZoom(true);
+		settings.setBuiltInZoomControls(true);
 
 		final View loading = v.findViewById(R.id.loading);
 
