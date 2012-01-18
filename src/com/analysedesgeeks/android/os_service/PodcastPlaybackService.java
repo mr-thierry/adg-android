@@ -22,8 +22,8 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.RemoteException;
 import android.util.Log;
-import android.widget.RemoteViews;
 
+import com.analysedesgeeks.android.MainActivity;
 import com.analysedesgeeks.android.R;
 
 public class PodcastPlaybackService extends Service {
@@ -311,18 +311,19 @@ public class PodcastPlaybackService extends Service {
 		if (mPlayer.isInitialized()) {
 			mPlayer.start();
 
-			final RemoteViews views = new RemoteViews(getPackageName(), R.layout.statusbar);
-			views.setImageViewResource(R.id.icon, R.drawable.stat_notify_musicplayer);
+			final int icon = R.drawable.ic_notification;
+			final CharSequence tickerText = description;
+			final String title = getString(R.string.analyseDesGeeks);
+			final long when = System.currentTimeMillis();
 
-			views.setTextViewText(R.id.trackname, getPath());
-			views.setTextViewText(R.id.artistalbum, null);
+			final Notification notification = new Notification(icon, tickerText, when);
+			notification.flags |= Notification.FLAG_ONGOING_EVENT;
 
-			final Notification status = new Notification();
-			status.contentView = views;
-			status.flags |= Notification.FLAG_ONGOING_EVENT;
-			status.icon = R.drawable.stat_notify_musicplayer;
-			status.contentIntent = PendingIntent.getActivity(this, 0, new Intent("com.analysedesgeeks.android.os_service.PLAYBACK_VIEWER").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), 0);
-			startForeground(PLAYBACKSERVICE_STATUS, status);
+			final Intent contentIntent = new Intent(this, MainActivity.class);
+			final PendingIntent appIntent = PendingIntent.getActivity(this, 0, contentIntent, 0);
+			notification.setLatestEventInfo(this, title, description, appIntent);
+
+			startForeground(PLAYBACKSERVICE_STATUS, notification);
 			if (!mIsSupposedToBePlaying) {
 				mIsSupposedToBePlaying = true;
 				hasPlayed = true;

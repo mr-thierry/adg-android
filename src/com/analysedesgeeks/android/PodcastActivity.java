@@ -2,10 +2,11 @@ package com.analysedesgeeks.android;
 
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
+import roboguice.util.Ln;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -42,38 +43,42 @@ public class PodcastActivity extends BaseAbstractActivity {
 			@Override
 			public void onClick(final View v) {
 				podcastPlayer.setVisibility(View.VISIBLE);
-				handler.postDelayed(new Runnable() {
-
-					@Override
-					public void run() {
-						playCurrentPodcast();
-					}
-
-				}, 500);
+				podcastPlayer.setDisplayedChild(LOADING_INDEX);
+				new PlayTask().execute();
 			}
 		});
 	}
 
-	private void playCurrentPodcast() {
+	private class PlayTask extends AsyncTask<Void, Void, Void> {
 
-		final FeedItem msg = rssService.getLastFeed().get(position);
+		@Override
+		protected Void doInBackground(final Void... params) {
+			final FeedItem msg = rssService.getLastFeed().get(position);
 
-		if (mService == null) {
-			return;
+			if (mService == null) {
+				return null;
+			}
+
+			try {
+				mService.stop();
+				mService.setDescription(msg.title);
+				mService.openFile(msg.link);
+				mService.play();
+
+				setIntent(new Intent());
+			} catch (final Exception ex) {
+				Ln.e(ex);
+			}
+
+			return null;
 		}
 
-		try {
-			mService.stop();
-			mService.openFile(msg.link);
-			mService.play();
-			mService.setDescription(msg.title);
+		@Override
+		protected void onPostExecute(final Void result) {
+			super.onPostExecute(result);
 
-			setIntent(new Intent());
-		} catch (final Exception ex) {
-			Log.d("MediaPlaybackActivity", "couldn't start playback: " + ex);
+			updatePodcastInfo();
 		}
-
-		updatePodcastInfo();
 
 	}
 

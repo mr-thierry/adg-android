@@ -42,7 +42,9 @@ public abstract class BaseAbstractActivity extends RoboFragmentActivity {
 
 	private static final int QUIT = 2;
 
-	private static final int CONTENT_INDEX = 1;
+	protected static final int LOADING_INDEX = 0;
+
+	protected static final int CONTENT_INDEX = 1;
 
 	@InjectView(R.id.pause)
 	private ImageButton mPauseButton;
@@ -90,8 +92,8 @@ public abstract class BaseAbstractActivity extends RoboFragmentActivity {
 				// but also if the audio ID is valid but the service is paused.
 				if (Utils.isNotEmpty(mService.getPath())) {
 					podcastPlayer.setVisibility(View.VISIBLE);
-					setPauseButtonImage();
 					updateTrackInfo();
+					refreshNow();
 					return;
 				} else {
 					podcastPlayer.setVisibility(View.GONE);
