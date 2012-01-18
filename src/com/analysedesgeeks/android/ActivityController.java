@@ -2,9 +2,40 @@ package com.analysedesgeeks.android;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 
 public class ActivityController {
+
+	public static void onContactEmailClicked(final Context context) {
+		final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+		final Resources res = context.getResources();
+
+		emailIntent.setType("plain/text");
+		emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { Const.ADG_CONTACT_EMAIL });
+		emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, res.getString(R.string.contactEmailSubject));
+
+		context.startActivity(Intent.createChooser(emailIntent, res.getString(R.string.sendEmail)));
+
+	}
+
+	public static void onContactMartketClicked(final Context context) {
+		final String packageName = context.getApplicationInfo().packageName;
+		context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName)));
+	}
+
+	public static void onContactSupportClicked(final Context context) {
+		final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
+
+		final Resources res = context.getResources();
+
+		emailIntent.setType("plain/text");
+		emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { Const.ADG_CONTACT_DEV_EMAIL });
+		emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, res.getString(R.string.contactEmailSubject));
+
+		context.startActivity(Intent.createChooser(emailIntent, res.getString(R.string.sendEmail)));
+	}
 
 	public static void onUrlClicked(final Context context, final String url) {
 

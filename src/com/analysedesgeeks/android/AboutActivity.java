@@ -1,6 +1,5 @@
 package com.analysedesgeeks.android;
 
-import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
 import android.text.Html;
@@ -11,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class AboutActivity extends RoboActivity {
+public class AboutActivity extends BaseActivity {
 
 	private static final String REALISED_BY_HTML = "Réalisé par <a href=\"https://plus.google.com/105344175486242358933\">Thierry-Dimitri Roy</a> <br/><br/> Merci à Vincent Miller (<a href=\"http://www.vmiller.ca\">vmiller.ca</a>) pour l'inspiration ;)";
 

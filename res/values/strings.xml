@@ -19,6 +19,15 @@
 	<string name="madeBy">Réalisé Par</string>
 	<string name="moog_audio">Moog Audio</string>
 	<string name="cipc">CPIC</string>
+	<string name="comments">Commentaires</string>
+	<string name="byEmail">Par courriel</string>
+	<string name="youCanContactByEmail">Vous pouvez rejoindre l\'Analyse des Geeks pour courriel:</string>
+	<string name="market">Market</string>
+	<string name="useMarket">Laisser un commentaire sur le Android Market:</string>
+	<string name="aProblem">Un problème ou des questions sur l\'application:</string>
+	<string name="contactSupport">Support</string>
+	<string name="contactEmailSubject">Contact - Analyse des Geeks</string>
+	<string name="sendEmail">Envoyer un courriel</string>
 		
 	
 	<string translatable="false" name="durationformatshort"><xliff:g id="format">%2$d:%5$02d</xliff:g></string>

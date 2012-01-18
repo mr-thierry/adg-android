@@ -12,6 +12,9 @@ public final class Const {
 	public static final String WEB_URL = "http://www.analysedesgeeks.com";
 	public static final String FACEBOOK_URL = "http://www.facebook.com/pages/Lanalyse-des-geeks/124106744291409";
 	public static final String FORUM_URL = "http://www.analysedesgeeks.com/Index/Liste-des-forums/Index/Liste-des-forums/";
+	public static final String ADG_CONTACT_EMAIL = "analysedesgeeks@gmail.com";
+	public static final String MARKET_URL = "market://details?id=<packagename>";
+	public static final String ADG_CONTACT_DEV_EMAIL = "thierryd@gmail.com";
 
 	private Const() {
 

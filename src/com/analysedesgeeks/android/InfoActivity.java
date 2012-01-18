@@ -3,7 +3,6 @@ package com.analysedesgeeks.android;
 import java.util.ArrayList;
 import java.util.List;
 
-import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +12,7 @@ import android.widget.ListView;
 
 import com.analysedesgeeks.android.InfoAdapter.InfoItem;
 
-public class InfoActivity extends RoboActivity {
+public class InfoActivity extends BaseActivity {
 
 	@InjectView(R.id.list)
 	private ListView listView;

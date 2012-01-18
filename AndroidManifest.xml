@@ -43,6 +43,10 @@
             android:name=".WebActivity"
             android:theme="@style/Theme.Sherlock" >
         </activity>
+        <activity
+            android:name=".ContactActivity"
+            android:theme="@style/Theme.Sherlock" >
+        </activity>
 
         <service android:name=".os_service.PodcastPlaybackService" >
         </service>
