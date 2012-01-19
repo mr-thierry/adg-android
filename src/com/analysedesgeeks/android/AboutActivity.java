@@ -10,7 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class AboutActivity extends BaseActivity {
+public class AboutActivity extends BaseDefaultActivity {
 
 	private static final String REALISED_BY_HTML = "Réalisé par <a href=\"https://plus.google.com/105344175486242358933\">Thierry-Dimitri Roy</a> <br/><br/> Merci à Vincent Miller (<a href=\"http://www.vmiller.ca\">vmiller.ca</a>) pour l'inspiration ;)";
 
@@ -22,20 +22,6 @@ public class AboutActivity extends BaseActivity {
 
 	@InjectView(R.id.aboutTV)
 	private TextView aboutTV;
-
-	@Override
-	public boolean onOptionsItemSelected(final android.view.MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// app icon in action bar clicked; go home
-			ActivityController.showMainActivity(this);
-
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-
-	}
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {

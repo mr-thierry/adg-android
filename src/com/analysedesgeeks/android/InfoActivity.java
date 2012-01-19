@@ -12,24 +12,10 @@ import android.widget.ListView;
 
 import com.analysedesgeeks.android.InfoAdapter.InfoItem;
 
-public class InfoActivity extends BaseActivity {
+public class InfoActivity extends BaseDefaultActivity {
 
 	@InjectView(R.id.list)
 	private ListView listView;
-
-	@Override
-	public boolean onOptionsItemSelected(final android.view.MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// app icon in action bar clicked; go home
-			ActivityController.showMainActivity(this);
-
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-
-	}
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {

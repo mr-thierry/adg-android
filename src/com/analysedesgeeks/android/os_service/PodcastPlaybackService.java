@@ -562,11 +562,7 @@ public class PodcastPlaybackService extends Service {
 			try {
 				mMediaPlayer.reset();
 				mMediaPlayer.setOnPreparedListener(null);
-				if (path.startsWith("content://")) {
-					mMediaPlayer.setDataSource(PodcastPlaybackService.this, Uri.parse(path));
-				} else {
-					mMediaPlayer.setDataSource(path);
-				}
+				mMediaPlayer.setDataSource(PodcastPlaybackService.this, Uri.parse(path));
 				mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 				mMediaPlayer.prepare();
 			} catch (final IOException ex) {

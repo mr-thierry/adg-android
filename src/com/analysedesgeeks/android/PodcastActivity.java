@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 import com.analysedesgeeks.android.rss.FeedItem;
 
-public class PodcastActivity extends BaseAbstractActivity {
+public class PodcastActivity extends AbstractPodcastActivity {
 
-	@InjectExtra(Const.EXTRA_POSITION)
+	@InjectExtra(value = Const.EXTRA_POSITION, optional = true)
 	private int position;
 
 	@InjectView(R.id.date)
@@ -59,6 +59,20 @@ public class PodcastActivity extends BaseAbstractActivity {
 				new PlayTask().execute();
 			}
 		});
+	}
+
+	@Override
+	public void onRestoreInstanceState(final Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		if (savedInstanceState != null) {
+			position = savedInstanceState.getInt(Const.EXTRA_POSITION);
+		}
+	}
+
+	@Override
+	protected void onSaveInstanceState(final Bundle outState) {
+		outState.putInt(Const.EXTRA_POSITION, position);
+		super.onSaveInstanceState(outState);
 	}
 
 	private class PlayTask extends AsyncTask<Void, Void, Void> {

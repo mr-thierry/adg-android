@@ -3,8 +3,8 @@
     android:id="@+id/podcast_player"
     android:layout_width="match_parent"
     android:layout_height="140dp"
-    android:orientation="vertical"
-        android:background="@color/grey" >
+    android:background="@color/grey"
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -30,10 +30,9 @@
             style="?android:attr/progressBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginRight="2dp"
-            android:layout_toLeftOf="@id/loading"
-            android:layout_alignTop="@id/loading"
-            android:layout_alignBottom="@id/loading" >
+            android:layout_toLeftOf="@id/loading" >
         </ProgressBar>
     </RelativeLayout>
 
@@ -116,7 +115,7 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
+
         <SeekBar
             android:id="@android:id/progress"
             style="?android:attr/progressBarStyleHorizontal"
@@ -126,7 +125,6 @@
             android:paddingBottom="4dip"
             android:paddingLeft="18dip"
             android:paddingRight="18dip" />
-
     </LinearLayout>
 
 </ViewSwitcher>

@@ -25,18 +25,6 @@ public class ActivityController {
 		context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName)));
 	}
 
-	public static void onContactSupportClicked(final Context context) {
-		final Intent emailIntent = new Intent(android.content.Intent.ACTION_SEND);
-
-		final Resources res = context.getResources();
-
-		emailIntent.setType("plain/text");
-		emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { Const.ADG_CONTACT_DEV_EMAIL });
-		emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, res.getString(R.string.contactEmailSubject));
-
-		context.startActivity(Intent.createChooser(emailIntent, res.getString(R.string.sendEmail)));
-	}
-
 	public static void onUrlClicked(final Context context, final String url) {
 
 		final Intent intent = new Intent(Intent.ACTION_VIEW);

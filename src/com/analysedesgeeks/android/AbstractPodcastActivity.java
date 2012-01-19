@@ -27,7 +27,7 @@ import com.analysedesgeeks.android.service.RssService;
 import com.analysedesgeeks.android.utils.Utils;
 import com.google.inject.Inject;
 
-public abstract class BaseAbstractActivity extends RoboFragmentActivity {
+public abstract class AbstractPodcastActivity extends RoboFragmentActivity {
 
 	private static final int MENU_INFO = 1;
 

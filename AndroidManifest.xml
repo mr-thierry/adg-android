@@ -14,19 +14,21 @@
 
     <application
         android:name=".ADGApplication"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:hardwareAccelerated="true" >
+        android:label="@string/app_name" >
         <activity
             android:name=".SplashActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PodcastActivity" >
+        <activity
+            android:name=".PodcastActivity"
+            android:theme="@style/Theme.Sherlock" >
         </activity>
         <activity
             android:name=".InfoActivity"
@@ -49,8 +51,7 @@
             android:theme="@style/Theme.Sherlock" >
         </activity>
 
-        <service android:name=".os_service.PodcastPlaybackService" >
-        </service>
+        <service android:name=".os_service.PodcastPlaybackService" />
     </application>
 
 </manifest>
