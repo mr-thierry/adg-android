@@ -30,7 +30,8 @@
         android:name=".ADGApplication"
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" >
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Sherlock" >
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
@@ -41,28 +42,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PodcastActivity"
-            android:theme="@style/Theme.Sherlock" >
+            android:name=".PodcastActivity" >
         </activity>
         <activity
-            android:name=".InfoActivity"
-            android:theme="@style/Theme.Sherlock" >
+            android:name=".InfoActivity" >
         </activity>
         <activity
-            android:name=".AboutActivity"
-            android:theme="@style/Theme.Sherlock" >
+            android:name=".AboutActivity" >
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.Sherlock" >
+            android:name=".MainActivity">
         </activity>
         <activity
-            android:name=".WebActivity"
-            android:theme="@style/Theme.Sherlock" >
+            android:name=".WebActivity" >
         </activity>
         <activity
-            android:name=".ContactActivity"
-            android:theme="@style/Theme.Sherlock" >
+            android:name=".ContactActivity" >
+        </activity>
+        <activity
+            android:name=".SourceCodeActivity">
         </activity>
 
         <service android:name=".os_service.PodcastPlaybackService" />

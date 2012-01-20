@@ -16,14 +16,14 @@
 package com.analysedesgeeks.android;
 
 import android.os.Bundle;
-import android.support.v4.app.ActionBar;
-import android.support.v4.app.ActionBar.Tab;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.MenuItem;
 import android.support.v4.view.ViewPager;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.ActionBar.Tab;
+import com.actionbarsherlock.view.MenuItem;
 
 public class MainActivity extends AbstractPodcastActivity {
 	private ViewPager mViewPager;
@@ -125,19 +125,18 @@ public class MainActivity extends AbstractPodcastActivity {
 		}
 
 		@Override
-		public void onTabReselected(final Tab tab, final FragmentTransaction ft) {
+		public void onTabReselected(final Tab tab) {
 
 		}
 
 		@Override
-		public void onTabSelected(final Tab tab, final FragmentTransaction ft) {
+		public void onTabSelected(final Tab tab) {
 			mViewPager.setCurrentItem(tab.getPosition());
 		}
 
 		@Override
-		public void onTabUnselected(final Tab tab, final FragmentTransaction ft) {
+		public void onTabUnselected(final Tab tab) {
 
 		}
-
 	}
 }

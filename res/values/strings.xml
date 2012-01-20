@@ -44,7 +44,9 @@
 	<string name="sendEmail">Envoyer un courriel</string>
 	<string name="analyseDesGeeks">Analyse des Geeks</string>
 	<string name="logo">Logo</string>
-		
+	<string name="sourceCode">Code source</string>
+	<string name="playPause">Jouer/Pause</string>
+	<string name="sourceCodeDesc"><![CDATA[Dans la plus pure tradition Android, le code source de cette application est disponible gratuitement à <a href="http://github.com/thierryd/adg-android">http://github.com/thierryd/adg-android</a>.]]></string>
 	
 	<string translatable="false" name="durationformatshort"><xliff:g id="format">%2$d:%5$02d</xliff:g></string>
 	<string translatable="false" name="durationformatlong"><xliff:g id="format">%1$d:%3$02d:%5$02d</xliff:g></string>

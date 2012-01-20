@@ -15,23 +15,28 @@
  */
 package com.analysedesgeeks.android;
 
-import roboguice.activity.RoboFragmentActivity;
+import roboguice.inject.InjectView;
+import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
+import android.widget.TextView;
 
-import com.actionbarsherlock.view.MenuItem;
+public class SourceCodeActivity extends BaseDefaultActivity {
 
-public abstract class BaseDefaultActivity extends RoboFragmentActivity {
+	@InjectView(R.id.sourceCodeDesc)
+	private TextView sourceCodeDescTV;
 
 	@Override
-	public boolean onOptionsItemSelected(final MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// app icon in action bar clicked; go home
-			ActivityController.showMainActivity(this);
+	protected void onCreate(final Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
+		setContentView(R.layout.activity_source_code);
+
+		sourceCodeDescTV.setText(Html.fromHtml(getString(R.string.sourceCodeDesc)));
+
+		Linkify.addLinks(sourceCodeDescTV, 0);
+		sourceCodeDescTV.setMovementMethod(LinkMovementMethod.getInstance());
 	}
 
 }

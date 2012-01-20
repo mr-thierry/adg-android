@@ -26,8 +26,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemClock;
-import android.support.v4.view.Menu;
-import android.support.v4.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -35,6 +33,8 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.analysedesgeeks.android.MusicUtils.ServiceToken;
 import com.analysedesgeeks.android.os_service.IMediaPlaybackService;
 import com.analysedesgeeks.android.os_service.PodcastPlaybackService;

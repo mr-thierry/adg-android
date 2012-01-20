@@ -72,6 +72,9 @@ public class InfoActivity extends BaseDefaultActivity {
 		case 5:
 			showContact();
 			break;
+		case 6:
+			showSource();
+			break;
 
 		default:
 			break;
@@ -88,6 +91,7 @@ public class InfoActivity extends BaseDefaultActivity {
 		list.add(new InfoItem(R.drawable.ic_menu_facebook, R.string.facebook));
 		list.add(new InfoItem(R.drawable.ic_menu_forum, R.string.forum));
 		list.add(new InfoItem(R.drawable.ic_menu_contact, R.string.contact));
+		list.add(new InfoItem(R.drawable.ic_menu_source, R.string.sourceCode));
 
 		return list;
 	}
@@ -106,7 +110,10 @@ public class InfoActivity extends BaseDefaultActivity {
 
 	private void showForum() {
 		ActivityController.showForum(this);
+	}
 
+	private void showSource() {
+		ActivityController.showSource(this);
 	}
 
 	private void showSupport() {

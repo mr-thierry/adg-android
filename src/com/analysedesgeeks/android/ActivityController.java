@@ -98,6 +98,12 @@ public class ActivityController {
 		context.startActivity(intent);
 	}
 
+	public static void showSource(final Context context) {
+		final Intent intent = new Intent(context, SourceCodeActivity.class);
+
+		context.startActivity(intent);
+	}
+
 	public static void showSupportPage(final Context context) {
 		final Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setData(Uri.parse(Const.SUPPORT_URL));

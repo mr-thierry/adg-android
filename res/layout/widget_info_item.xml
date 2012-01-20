@@ -28,6 +28,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/logo_list" 
         android:layout_gravity="center"
+        android:contentDescription="@string/logo"
         />
     
    
