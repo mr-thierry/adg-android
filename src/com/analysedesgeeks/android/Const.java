@@ -21,7 +21,7 @@ public final class Const {
 	public static final String EXTRA_POSITION = "EXTRA_POSITION";
 	public static final String EXTRA_URL = "EXTRA_URL";
 	public static final String ADG_TWITTER_URL = "http://m.twitter.com/analysedesgeeks";
-	public static final String SUPPORT_URL = "http://twitter.com/#!/analysedesgeeks";
+	public static final String SUPPORT_URL = "http://www.ffttprupa.com/";
 	public static final String MOOG_AUDIO_URL = "http://www.moogaudio.com";
 	public static final String CIPC_URL = "http://www.cipc.com";
 	public static final String WEB_URL = "http://www.analysedesgeeks.com";

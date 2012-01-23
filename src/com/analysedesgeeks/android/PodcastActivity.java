@@ -74,6 +74,8 @@ public class PodcastActivity extends AbstractPodcastActivity {
 				new PlayTask().execute();
 			}
 		});
+
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override

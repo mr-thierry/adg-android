@@ -16,6 +16,7 @@
 package com.analysedesgeeks.android;
 
 import roboguice.activity.RoboFragmentActivity;
+import android.os.Bundle;
 
 import com.actionbarsherlock.view.MenuItem;
 
@@ -32,6 +33,12 @@ public abstract class BaseDefaultActivity extends RoboFragmentActivity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	@Override
+	protected void onCreate(final Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 }
