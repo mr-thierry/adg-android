@@ -2,3 +2,7 @@
 /bin/
 
 /gen/com
+/target/classes
+/target/generated-sources
+/target/surefire
+/target/unpack

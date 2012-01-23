@@ -5,9 +5,9 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="lib" path="libs/guice-2.0-no_aop.jar"/>
-	<classpathentry kind="lib" path="libs/roboguice-2.0b3.jar" sourcepath="libs/libs-src/roboguice-1.1.2-sources.jar"/>
 	<classpathentry kind="lib" path="libs/acra-4.2.3.jar"/>
 	<classpathentry kind="lib" path="libs/commons-lang-2.5.jar"/>
-	<classpathentry kind="lib" path="libs/actionbarsherlock-plugin-compat-lib-4.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="libs/actionbarsherlock-plugin-compat-lib-4.0.0-SNAPSHOT.jar" sourcepath="libs/libs-src/actionbarsherlock-library-4.0.0-SNAPSHOT.zip"/>
+	<classpathentry kind="lib" path="libs/roboguice-2.0b3.jar" sourcepath="libs/libs-src/roboguice-2.0b3-sources.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

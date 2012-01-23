@@ -26,6 +26,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemClock;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -33,8 +34,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.analysedesgeeks.android.MusicUtils.ServiceToken;
 import com.analysedesgeeks.android.os_service.IMediaPlaybackService;
 import com.analysedesgeeks.android.os_service.PodcastPlaybackService;
@@ -177,16 +176,16 @@ public abstract class AbstractPodcastActivity extends RoboFragmentActivity {
 	};
 
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu) {
+	public boolean onCreateOptionsMenu(final com.actionbarsherlock.view.Menu menu) {
 		menu.add(0, MENU_INFO, 0, "Info")
 		        .setIcon(R.drawable.ic_menu_info)
 		        .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
 		return super.onCreateOptionsMenu(menu);
-	}
+	};
 
 	@Override
-	public boolean onOptionsItemSelected(final MenuItem item) {
+	public boolean onOptionsItemSelected(final com.actionbarsherlock.view.MenuItem item) {
 		switch (item.getItemId()) {
 		case MENU_INFO:
 			ActivityController.showInfoActivity(this);
