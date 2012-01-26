@@ -39,4 +39,4 @@ Copyright (c) 2012 [Thierry-Dimitri Roy](http://about.me/thierryd)
 
 Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-![ADG Mobile for Android](https://github.com/thierryd/adg-android/screenshots/screen1.png "ADG Mobile for Android") &nbsp;&nbsp; ![ADG Mobile for Android](https://github.com/thierryd/adg-android/screenshots/screen2.png "ADG Mobile for Android") 
+![ADG Mobile for Android](https://github.com/thierryd/adg-android/raw/master/screenshots/screen1.png "ADG Mobile for Android") &nbsp;&nbsp; ![ADG Mobile for Android](https://github.com/thierryd/adg-android/raw/master/screenshots/screen2.png "ADG Mobile for Android") 
