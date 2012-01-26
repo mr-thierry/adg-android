@@ -20,15 +20,40 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.view.MenuItem;
 
 public class MainActivity extends AbstractPodcastActivity {
+
+	private static final int TWITTER_FRAGMENT_INDEX = 1;
+
 	private ViewPager mViewPager;
 
 	private TabsAdapter mTabsAdapter;
+
+	@Override
+	public boolean onKeyDown(final int keyCode, final KeyEvent event) {
+		//we need to check if we can go back in the twitter fragment. Otherwise, just pass the event down 
+
+		final ActionBar actionBar = getSupportActionBar();
+		if (actionBar.getSelectedNavigationIndex() == TWITTER_FRAGMENT_INDEX) {
+			if (event.getAction() == KeyEvent.ACTION_DOWN) {
+				switch (keyCode)
+				{
+				case KeyEvent.KEYCODE_BACK:
+					final WebFragment webFragment = (WebFragment) mTabsAdapter.getItem(TWITTER_FRAGMENT_INDEX);
+					if (webFragment.goBack()) {
+						return true;
+					}
+				}
+
+			}
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
@@ -79,6 +104,8 @@ public class MainActivity extends AbstractPodcastActivity {
 	public static class TabsAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener, ActionBar.TabListener {
 		private final ActionBar mActionBar;
 		private final ViewPager mViewPager;
+		private final Fragment rssFragment;
+		private final Fragment twitterFragment;
 
 		public TabsAdapter(final FragmentActivity activity, final ActionBar actionBar, final ViewPager pager) {
 			super(activity.getSupportFragmentManager());
@@ -86,6 +113,9 @@ public class MainActivity extends AbstractPodcastActivity {
 			mViewPager = pager;
 			mViewPager.setAdapter(this);
 			mViewPager.setOnPageChangeListener(this);
+
+			rssFragment = RssListFragment.newInstance();
+			twitterFragment = WebFragment.newInstance(Const.ADG_TWITTER_URL);
 		}
 
 		public void addTab(final ActionBar.Tab tab, final Class<?> clss) {
@@ -101,9 +131,9 @@ public class MainActivity extends AbstractPodcastActivity {
 		@Override
 		public Fragment getItem(final int position) {
 			if (position == 0) {
-				return RssListFragment.newInstance();
+				return rssFragment;
 			} else if (position == 1) {
-				return WebFragment.newInstance(Const.ADG_TWITTER_URL);
+				return twitterFragment;
 			} else {
 				return null;
 			}

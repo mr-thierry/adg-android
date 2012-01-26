@@ -39,6 +39,15 @@ public class WebFragment extends Fragment {
 	}
 
 	private String url;
+	private WebView webview;
+
+	public boolean goBack() {
+		if (webview.canGoBack()) {
+			webview.goBack();
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState) {
@@ -54,7 +63,7 @@ public class WebFragment extends Fragment {
 
 		final View v = inflater.inflate(R.layout.fragment_webview, container, false);
 
-		final WebView webview = (WebView) v.findViewById(R.id.webview);
+		webview = (WebView) v.findViewById(R.id.webview);
 
 		final WebSettings settings = webview.getSettings();
 		settings.setJavaScriptEnabled(true);
