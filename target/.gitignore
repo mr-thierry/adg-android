@@ -1,5 +1,5 @@
 
-*.dex
-*.jar
 *.apk
 *.ap_
+*.jar
+*.dex
