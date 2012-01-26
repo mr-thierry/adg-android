@@ -28,7 +28,7 @@ import android.widget.TextView;
 
 public class AboutActivity extends BaseDefaultActivity {
 
-	private static final String REALISED_BY_HTML = "Réalisé par <a href=\"https://plus.google.com/105344175486242358933\">Thierry-Dimitri Roy</a> <br/><br/> Merci à Vincent Miller (<a href=\"http://www.vmiller.ca\">vmiller.ca</a>) pour l'inspiration ;)";
+	private static final String REALISED_BY_HTML = "Réalisé par <a href=\"https://about.me/thierryd\">Thierry-Dimitri Roy</a> <br/><br/> Merci à Vincent Miller (<a href=\"http://www.vmiller.ca\">vmiller.ca</a>) pour l'inspiration ;)";
 
 	@InjectView(R.id.moogAudioIV)
 	private ImageView moogAudioIV;
