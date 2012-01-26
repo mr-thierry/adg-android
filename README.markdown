@@ -23,10 +23,11 @@ Maven and the [Android Maven Plugin](http://code.google.com/p/maven-android-plug
 
 To compile the apk do:
  
-mvn clean install
+    mvn clean install
 
 To deploy a production release APK to a device, do:
-mvn clean install android:deploy -Dsign.keystore=adg.keystore -Dsign.alias=adg -Dsign.keypass=keypassword -Dsign.storepass=storepass
+
+    mvn clean install android:deploy -Dsign.keystore=adg.keystore -Dsign.alias=adg -Dsign.keypass=keypassword -Dsign.storepass=storepass
 
 This will compile the code, sign it and deploying it to a device. Note that you need to have a keystore name "adg.keystore" in the project folder. For more information about signing using a keystore see [Signing in Release Mode](http://developer.android.com/guide/publishing/app-signing.html#releasemode)
 
