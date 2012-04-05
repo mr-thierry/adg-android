@@ -15,7 +15,6 @@
  */
 package com.analysedesgeeks.android;
 
-import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectView;
 import roboguice.util.Ln;
 import android.content.ComponentName;
@@ -41,7 +40,7 @@ import com.analysedesgeeks.android.service.RssService;
 import com.analysedesgeeks.android.utils.Utils;
 import com.google.inject.Inject;
 
-public abstract class AbstractPodcastActivity extends RoboFragmentActivity {
+public abstract class AbstractPodcastActivity extends SherlockRoboFragmentActivity {
 
 	private static final int MENU_INFO = 1;
 

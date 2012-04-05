@@ -15,12 +15,11 @@
  */
 package com.analysedesgeeks.android;
 
-import roboguice.activity.RoboFragmentActivity;
 import android.os.Bundle;
 
 import com.actionbarsherlock.view.MenuItem;
 
-public abstract class BaseDefaultActivity extends RoboFragmentActivity {
+public abstract class BaseDefaultActivity extends SherlockRoboFragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {

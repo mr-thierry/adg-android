@@ -15,7 +15,6 @@
  */
 package com.analysedesgeeks.android;
 
-import roboguice.activity.RoboActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,7 +23,7 @@ import com.analysedesgeeks.android.service.DownloadService;
 import com.analysedesgeeks.android.service.RssService;
 import com.google.inject.Inject;
 
-public class SplashActivity extends RoboActivity {
+public class SplashActivity extends SherlockRoboFragmentActivity {
 
 	private static final long MIN_SPLASH_TIME = 3000L;
 
@@ -41,6 +40,7 @@ public class SplashActivity extends RoboActivity {
 	@Override
 	public void onCreate(final Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+				
 		setContentView(R.layout.activity_splash);
 
 		startTime = System.currentTimeMillis();

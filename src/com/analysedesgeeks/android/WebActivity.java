@@ -15,14 +15,13 @@
  */
 package com.analysedesgeeks.android;
 
-import roboguice.activity.RoboFragmentActivity;
 import roboguice.inject.InjectExtra;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-public class WebActivity extends RoboFragmentActivity {
+public class WebActivity extends SherlockRoboFragmentActivity {
 
 	@InjectExtra(Const.EXTRA_URL)
 	private String url;
